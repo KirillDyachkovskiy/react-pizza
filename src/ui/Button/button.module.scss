@@ -3,9 +3,10 @@
   border: 0;
   border-radius: 30px;
   cursor: pointer;
-  padding: 14px 17px;
+  padding: 10px 17px;
   font-size: var(--px16);
-  transition: all 0.1s ease-in-out;
+  font-weight: var(--w700);
+  transition: all 0.3s ease-in-out;
   width: fit-content;
   white-space: nowrap;
   box-sizing: border-box;

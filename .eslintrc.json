@@ -120,6 +120,7 @@
         "next": "function"
       }
     ],
-    "react/jsx-fragments": 0
+    "react/jsx-fragments": 0,
+    "react/no-unused-prop-types": 0
   }
 }
