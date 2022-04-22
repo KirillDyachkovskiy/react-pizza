@@ -1,6 +1,3 @@
 export default function App() {
-  return (
-    <p>PRIVET
-    </p>
-  );
+  return <p>PRIVET</p>;
 }
