@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Button, Tab, Tabs, TabsGroup } from './ui';
+import { Card } from './components';
+import cheeseChicken from './assets/images/cheese-chicken.png';
 
 export default function App() {
   const [activeSize, setActiveSize] = useState<1 | 2>(1);
@@ -52,6 +54,7 @@ export default function App() {
           </TabsGroup>
         </Tabs>
       </div>
+      <Card name='Креветки по-азиатски' cost={450} photo={cheeseChicken} />
     </main>
   );
 }

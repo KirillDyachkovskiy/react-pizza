@@ -1,0 +1,12 @@
+.cost {
+  font-weight: var(--w700);
+  font-size: var(--px22);
+
+  &_color_orange {
+    color: var(--orange);
+  }
+
+  &_color_black {
+    color: var(--black);
+  }
+}
