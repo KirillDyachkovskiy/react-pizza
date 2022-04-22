@@ -48,7 +48,7 @@
     }
 
     &:disabled + .tabs__title {
-      color: var(--gray-text);
+      color: var(--gray);
       cursor: not-allowed;
     }
 

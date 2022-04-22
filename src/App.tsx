@@ -37,7 +37,7 @@ export default function App() {
           >
             <Tab value={26} title='26см.' />
             <Tab value={30} title='30см.' />
-            <Tab value={40} title='40см.' />
+            <Tab value={40} title='40см.' disabled />
           </TabsGroup>
         </Tabs>
         <br />
