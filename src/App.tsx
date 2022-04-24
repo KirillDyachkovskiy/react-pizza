@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Tab, Tabs, TabsGroup } from './ui';
-import { Card } from './components';
+import { Card, CatalogSorter } from './components';
 import cheeseChicken from './assets/images/cheese-chicken.png';
 
 export default function App() {
@@ -55,6 +55,7 @@ export default function App() {
         </Tabs>
       </div>
       <Card name='Креветки по-азиатски' cost={450} photo={cheeseChicken} />
+      <CatalogSorter name='pizza-catalog' />
     </main>
   );
 }
