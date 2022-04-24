@@ -23,7 +23,7 @@
     text-align: center;
   }
 
-  &__title {
+  &__label {
     border-radius: 5px;
     cursor: pointer;
     padding: 5px;
@@ -42,17 +42,17 @@
     position: absolute;
     width: 1px;
 
-    &:checked + .tabs__title {
+    &:checked + .tabs__label {
       background-color: var(--white);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
-    &:disabled + .tabs__title {
+    &:disabled + .tabs__label {
       color: var(--gray);
       cursor: not-allowed;
     }
 
-    &:focus-visible + .tabs__title {
+    &:focus-visible + .tabs__label {
       color: var(--orange);
     }
   }

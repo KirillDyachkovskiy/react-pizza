@@ -2,12 +2,15 @@ import { useState } from 'react';
 import s from './card.module.scss';
 import { Image, Tabs, TabsGroup, Tab, Cost, Button } from '../../ui';
 
+type TPizzaType = 'thin' | 'traditional';
+type TPizzaSize = 26 | 30 | 40;
+
 interface IButton {
   name: string;
   cost: number;
   photo?: string;
-  availableTypes?: ('thin' | 'traditional')[];
-  availableSizes?: (26 | 30 | 40)[];
+  availableTypes?: TPizzaType[];
+  availableSizes?: TPizzaSize[];
 }
 
 export default function Card({
@@ -17,10 +20,8 @@ export default function Card({
   availableTypes = ['thin', 'traditional'],
   availableSizes = [26, 30, 40],
 }: IButton) {
-  const [selectedType, setSelectedType] = useState<'thin' | 'traditional'>(
-    'thin'
-  );
-  const [selectedSize, setSelectedSize] = useState<26 | 30 | 40>(26);
+  const [selectedType, setSelectedType] = useState<TPizzaType>('thin');
+  const [selectedSize, setSelectedSize] = useState<TPizzaSize>(26);
 
   return (
     <article className={s.card}>
@@ -30,40 +31,40 @@ export default function Card({
       <p className={s.card__name}>{name}</p>
       <div className={s.card__characteristics}>
         <Tabs>
-          <TabsGroup
+          <TabsGroup<TPizzaType>
             name={`${name}_type`}
             activeTab={selectedType}
             setActiveTab={setSelectedType}
           >
             <Tab
               value={1}
-              title='тонкое'
+              label='тонкое'
               disabled={!availableTypes?.includes('thin')}
             />
             <Tab
               value={2}
-              title='традиционное'
+              label='традиционное'
               disabled={!availableTypes?.includes('traditional')}
             />
           </TabsGroup>
-          <TabsGroup
+          <TabsGroup<TPizzaSize>
             name={`${name}_size`}
             activeTab={selectedSize}
             setActiveTab={setSelectedSize}
           >
             <Tab
               value={26}
-              title='26 см.'
+              label='26 см.'
               disabled={!availableSizes?.includes(26)}
             />
             <Tab
               value={30}
-              title='30 см.'
+              label='30 см.'
               disabled={!availableSizes?.includes(30)}
             />
             <Tab
               value={40}
-              title='40 см.'
+              label='40 см.'
               disabled={!availableSizes?.includes(40)}
             />
           </TabsGroup>

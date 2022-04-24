@@ -7,7 +7,7 @@ interface SimpleTabsProps<T> {
   children: ReactElement<ITabsGroup<T>>[] | ReactElement<ITabsGroup<T>>;
 }
 
-function SimpleTabs<T = string>({ children }: SimpleTabsProps<T>) {
+export default function Tabs<T = string>({ children }: SimpleTabsProps<T>) {
   return (
     <div className={s.tabs__field}>
       {Children.map(children, (tabsGroup: ReactElement<ITabsGroup<T>>) => {
@@ -19,7 +19,7 @@ function SimpleTabs<T = string>({ children }: SimpleTabsProps<T>) {
           <div className={s.tabs__group}>
             {Children.map(tabs, (tab: ReactElement<ITab<T>>) => {
               const {
-                props: { title, value, disabled },
+                props: { label, value, disabled },
               } = tab;
 
               return (
@@ -33,7 +33,7 @@ function SimpleTabs<T = string>({ children }: SimpleTabsProps<T>) {
                     checked={activeTab === value}
                     onChange={() => setActiveTab(value)}
                   />
-                  <div className={s.tabs__title}>{title}</div>
+                  <div className={s.tabs__label}>{label}</div>
                 </label>
               );
             })}
@@ -43,5 +43,3 @@ function SimpleTabs<T = string>({ children }: SimpleTabsProps<T>) {
     </div>
   );
 }
-
-export default SimpleTabs;

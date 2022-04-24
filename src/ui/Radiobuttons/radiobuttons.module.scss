@@ -1,0 +1,30 @@
+.radiobutton {
+  &__label {
+    cursor: pointer;
+    background-color: var(--gray-line);
+    color: var(--black);
+    border-radius: 30px;
+    padding: 10px 17px;
+    font-size: var(--px16);
+    font-weight: var(--w700);
+    transition: color 0.3s ease-in-out;
+    user-select: none;
+  }
+
+  &__radio {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    &:focus-visible + .radiobutton__label {
+      color: var(--orange);
+    }
+
+    &:checked + .radiobutton__label {
+      background-color: var(--black);
+      color: var(--white);
+    }
+  }
+}

@@ -29,7 +29,9 @@ export default function CatalogSorter({ name }: ICatalogSorter) {
     <div className={s.catalogSorter}>
       <span>Сортировка по:</span>
       <Dropdown
-        element={<span className={s.catalogSorter__span}>{sortType}</span>}
+        element={
+          <span className={s.catalogSorter__span}>{ESort[sortType]}</span>
+        }
       >
         {(setIsDropdownVisible: (value: boolean) => void) => (
           <div className={s.catalogSorter__dropdown}>
