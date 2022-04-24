@@ -1,0 +1,27 @@
+.card {
+  width: 280px;
+  height: 460px;
+
+  &__photo {
+    width: 260px;
+    height: 260px;
+    padding: 20px 0 0 20px;
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    text-align: center;
+    font-size: var(--px20);
+    font-weight: var(--w800);
+  }
+
+  &__characteristics {
+    margin: 20px 0;
+  }
+
+  &__submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

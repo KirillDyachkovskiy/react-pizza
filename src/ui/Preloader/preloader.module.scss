@@ -2,13 +2,13 @@
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 80px;
+  height: 20px;
 
   &__circle {
     position: absolute;
-    top: 33px;
-    width: 13px;
-    height: 13px;
+    top: calc(50% - 6px);
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
     background: var(--orange);
