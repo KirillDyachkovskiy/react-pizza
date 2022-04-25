@@ -6,6 +6,10 @@
     align-items: baseline;
   }
 
+  &__section {
+    margin-top: 20px;
+  }
+
   &__title {
     font-weight: var(--w700);
     font-size: var(--px32);

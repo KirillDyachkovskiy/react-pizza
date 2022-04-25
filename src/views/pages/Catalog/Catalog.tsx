@@ -20,18 +20,20 @@ export default function Catalog({ title, pizzas }: TCatalog) {
         />
         <CatalogSorter name='pizzasSorter' />
       </header>
-      <section className={s.catalogPage__catalog}>
+      <section className={s.catalogPage__section}>
         <h1 className={s.catalogPage__title}>{category} пиццы</h1>
-        {pizzas.map(({ id, name, price, imageUrl, sizes, types }: TPizza) => (
-          <Card
-            key={id}
-            name={name}
-            price={price}
-            imageUrl={imageUrl}
-            sizes={sizes}
-            types={types}
-          />
-        ))}
+        <div className={s.catalogPage__catalog}>
+          {pizzas.map(({ id, name, price, imageUrl, sizes, types }: TPizza) => (
+            <Card
+              key={id}
+              name={name}
+              price={price}
+              imageUrl={imageUrl}
+              sizes={sizes}
+              types={types}
+            />
+          ))}
+        </div>
       </section>
     </section>
   );

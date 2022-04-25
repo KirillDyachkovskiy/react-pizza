@@ -13,27 +13,27 @@ interface ICategories {
 
 const categories = [
   {
-    id: 1,
+    id: 0,
     label: 'Все',
   },
   {
-    id: 2,
+    id: 1,
     label: 'Мясные',
   },
   {
-    id: 3,
+    id: 2,
     label: 'Вегетарианские',
   },
   {
-    id: 4,
+    id: 3,
     label: 'Гриль',
   },
   {
-    id: 5,
+    id: 4,
     label: 'Острые',
   },
   {
-    id: 6,
+    id: 5,
     label: 'Закрытые',
   },
 ];
@@ -52,11 +52,9 @@ export default function Categories({ onChange }: ICategories) {
         selected={selectedCategory}
         setSelected={setSelectedCategory}
       >
-        {[{ id: 0, label: 'Все' }, ...categories].map(
-          ({ id, label }: TCategory) => (
-            <Radiobutton key={id} value={id} label={label} />
-          )
-        )}
+        {categories.map(({ id, label }: TCategory) => (
+          <Radiobutton key={id} value={id} label={label} />
+        ))}
       </Radiobuttons>
     </nav>
   );
