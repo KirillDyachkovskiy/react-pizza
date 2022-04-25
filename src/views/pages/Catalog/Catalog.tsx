@@ -1,8 +1,27 @@
 import { useTitle } from '../../../data/hooks';
-import { TPage } from '../../../data/types/page';
+import { TPage, TPizza } from '../../../data/types';
+import { Card } from '../../components';
+import s from './catalog.module.scss';
 
-export default function Catalog({ title }: TPage) {
+type TCatalog = TPage & {
+  pizzas: TPizza[];
+};
+
+export default function Catalog({ title, pizzas }: TCatalog) {
   useTitle(title);
 
-  return <p>Something</p>;
+  return (
+    <section className={s.catalog}>
+      {pizzas.map(({ id, name, price, imageUrl, sizes, types }: TPizza) => (
+        <Card
+          key={id}
+          name={name}
+          price={price}
+          imageUrl={imageUrl}
+          sizes={sizes}
+          types={types}
+        />
+      ))}
+    </section>
+  );
 }
