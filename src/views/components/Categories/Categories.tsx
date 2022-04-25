@@ -43,7 +43,7 @@ export default function Categories({ onChange }: ICategories) {
 
   useEffect(() => {
     onChange(categories[selectedCategory].label);
-  }, [selectedCategory, onChange, categories]);
+  }, [selectedCategory, onChange]);
 
   return (
     <nav className={s.categories}>
