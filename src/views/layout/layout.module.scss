@@ -9,6 +9,8 @@
   &__header {
     padding: 40px 80px;
     border-bottom: 1px solid var(--gray-line);
+    display: flex;
+    justify-content: space-between;
   }
 
   &__title {

@@ -20,7 +20,7 @@ export default function Catalog({ title, pizzas }: TCatalog) {
         />
         <CatalogSorter name='pizzasSorter' />
       </header>
-      <section className={s.catalogPage__section}>
+      <main className={s.catalogPage__main}>
         <h1 className={s.catalogPage__title}>{category} пиццы</h1>
         <div className={s.catalogPage__catalog}>
           {pizzas.map(({ id, name, price, imageUrl, sizes, types }: TPizza) => (
@@ -34,7 +34,7 @@ export default function Catalog({ title, pizzas }: TCatalog) {
             />
           ))}
         </div>
-      </section>
+      </main>
     </section>
   );
 }

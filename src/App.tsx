@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { TPizza } from './data/types';
 import Layout from './views/layout';
 import { Catalog } from './views/pages';
@@ -8,6 +8,7 @@ import API from './data/api';
 
 export default function App() {
   const [pizzas, setPizzas] = useState<TPizza[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
     API.getPizzas().then(({ data }) => setPizzas(data));
@@ -15,7 +16,10 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route
+        path='/'
+        element={<Layout hasButton={location.pathname === '/'} />}
+      >
         <Route
           index
           element={<Catalog title='Пицца React' pizzas={pizzas} />}
