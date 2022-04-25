@@ -8,54 +8,55 @@ type TCategory = {
 };
 
 interface ICategories {
-  onChange: () => void;
-  categories: TCategory[];
+  onChange: (label: string) => void;
 }
 
+const categories = [
+  {
+    id: 1,
+    label: 'Все',
+  },
+  {
+    id: 2,
+    label: 'Мясные',
+  },
+  {
+    id: 3,
+    label: 'Вегетарианские',
+  },
+  {
+    id: 4,
+    label: 'Гриль',
+  },
+  {
+    id: 5,
+    label: 'Острые',
+  },
+  {
+    id: 6,
+    label: 'Закрытые',
+  },
+];
+
 export default function Categories({ onChange }: ICategories) {
-  const [selectedCategory, setSelectedCategory] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<number>(0);
 
   useEffect(() => {
-    onChange();
-  }, [selectedCategory, onChange]);
-
-  const categories = [
-    {
-      id: 1,
-      label: 'Все',
-    },
-    {
-      id: 2,
-      label: 'Мясные',
-    },
-    {
-      id: 3,
-      label: 'Вегетарианские',
-    },
-    {
-      id: 4,
-      label: 'Гриль',
-    },
-    {
-      id: 5,
-      label: 'Острые',
-    },
-    {
-      id: 6,
-      label: 'Закрытые',
-    },
-  ];
+    onChange(categories[selectedCategory].label);
+  }, [selectedCategory, onChange, categories]);
 
   return (
     <nav className={s.categories}>
       <Radiobuttons<number>
-        name='radio'
+        name='categories'
         selected={selectedCategory}
         setSelected={setSelectedCategory}
       >
-        {categories.map((category: TCategory) => (
-          <Radiobutton value={category.id} label={category.label} />
-        ))}
+        {[{ id: 0, label: 'Все' }, ...categories].map(
+          ({ id, label }: TCategory) => (
+            <Radiobutton key={id} value={id} label={label} />
+          )
+        )}
       </Radiobuttons>
     </nav>
   );

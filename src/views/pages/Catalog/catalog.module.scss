@@ -1,6 +1,20 @@
-.catalog {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 50px 35px;
+.catalogPage {
+  &__header {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__title {
+    font-weight: var(--w700);
+    font-size: var(--px32);
+  }
+
+  &__catalog {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px 35px;
+  }
 }

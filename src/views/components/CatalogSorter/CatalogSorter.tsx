@@ -36,12 +36,11 @@ export default function CatalogSorter({ name }: ICatalogSorter) {
         {(setIsDropdownVisible: (value: boolean) => void) => (
           <div className={s.catalogSorter__dropdown}>
             {(Object.keys(ESort) as TSort[]).map((value: TSort) => (
-              <label htmlFor={`${name}_${value}`}>
+              <label htmlFor={`${name}_${value}`} key={value}>
                 <input
                   id={`${name}_${value}`}
                   className={s.catalogSorter__radio}
                   name={name}
-                  key={value}
                   type='radio'
                   checked={sortType === value}
                   onChange={() => handleTypeChange(value, setIsDropdownVisible)}

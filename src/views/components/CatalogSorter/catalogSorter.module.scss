@@ -2,6 +2,7 @@
   display: inline-flex;
   gap: 5px;
   font-weight: var(--w700);
+  white-space: nowrap;
 
   &__span {
     text-decoration: underline dotted;
