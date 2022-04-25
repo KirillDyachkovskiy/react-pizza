@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './layout';
-import { Catalog } from './pages';
-import { Preloader } from './ui';
+import Layout from './views/layout';
+import { Catalog } from './views/pages';
+import { Preloader } from './views/ui';
 
 export default function App() {
   return (
