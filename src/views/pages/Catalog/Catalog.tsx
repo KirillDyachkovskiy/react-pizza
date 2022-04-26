@@ -10,7 +10,7 @@ import s from './catalog.module.scss';
 export default function Catalog({ title }: TPage) {
   useTitle(title);
 
-  const category = useSelector(getCategory);
+  const categoryFilter = useSelector(getCategory);
 
   const pizzas = useSelector(getPizzas);
 
@@ -21,17 +21,12 @@ export default function Catalog({ title }: TPage) {
         <CatalogSorter name='pizzasSorter' />
       </header>
       <main className={s.catalogPage__main}>
-        <h2 className={s.catalogPage__title}>{ECategories[category]} пиццы</h2>
+        <h2 className={s.catalogPage__title}>
+          {ECategories[categoryFilter]} пиццы
+        </h2>
         <div className={s.catalogPage__catalog}>
-          {pizzas.map(({ id, name, price, imageUrl, sizes, types }: TPizza) => (
-            <Card
-              key={id}
-              name={name}
-              price={price}
-              imageUrl={imageUrl}
-              sizes={sizes}
-              types={types}
-            />
+          {pizzas.map(({ category, rating, ...pizza }: TPizza) => (
+            <Card {...pizza} />
           ))}
         </div>
       </main>

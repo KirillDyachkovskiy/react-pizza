@@ -1,5 +1,34 @@
 .cartPage {
+  margin: 0 auto;
+  width: 820px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 30px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__cancel, &__submit {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__summary {
+    white-space: nowrap;
+    font-size: var(--px22);
+    font-weight: var(--400);
+  }
+
+  &__count {
+    font-weight: var(--w700);
+  }
 }

@@ -8,9 +8,9 @@ interface IButton {
 
 export default function Cost({ value, prefix = '', color = 'black' }: IButton) {
   return (
-    <p className={`${s.cost} ${s[`cost_color_${color}`]}`}>
+    <span className={`${s.cost} ${s[`cost_color_${color}`]}`}>
       {prefix}
       {value} ₽
-    </p>
+    </span>
   );
 }
