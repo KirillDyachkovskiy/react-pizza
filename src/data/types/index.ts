@@ -26,3 +26,11 @@ export enum ECategories {
 }
 
 export type TCategories = keyof typeof ECategories;
+
+export enum ESortType {
+  popularity = 'по популярности',
+  price = 'по цене',
+  alphabetical = 'по алфавиту',
+}
+
+export type TSortType = keyof typeof ESortType;

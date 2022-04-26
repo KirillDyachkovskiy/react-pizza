@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TCategories } from '../types';
+import { TCategories, TSortType } from '../types';
 
 type TFilters = {
-  sortBy: string;
+  sortType: TSortType;
   category: TCategories;
 };
 
 const initialState: TFilters = {
-  sortBy: '',
+  sortType: 'popularity',
   category: 'all',
 };
 
@@ -16,8 +16,11 @@ const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setSort: (state: TFilters, action: PayloadAction<{ sortType: string }>) => {
-      state.sortBy = action.payload.sortType;
+    setSortType: (
+      state: TFilters,
+      action: PayloadAction<{ sortType: TSortType }>
+    ) => {
+      state.sortType = action.payload.sortType;
     },
     setCategory: (
       state: TFilters,
@@ -28,5 +31,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { setSort, setCategory } = filtersSlice.actions;
+export const { setSortType, setCategory } = filtersSlice.actions;
 export default filtersSlice;
