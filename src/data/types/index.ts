@@ -15,3 +15,14 @@ export type TPizza = {
   category: number;
   rating: number;
 };
+
+export enum ECategories {
+  all = 'Все',
+  meat = 'Мясные',
+  vegetarian = 'Вегетарианские',
+  grill = 'Гриль',
+  sharp = 'Острые',
+  closed = 'Закрытые',
+}
+
+export type TCategories = keyof typeof ECategories;

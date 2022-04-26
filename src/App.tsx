@@ -9,7 +9,7 @@ import Layout from './views/layout';
 import { Cart, Catalog } from './views/pages';
 
 export default function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,10 +18,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route
-        path='/'
-        element={<Layout hasButton={location.pathname === '/'} />}
-      >
+      <Route path='/' element={<Layout hasButton={pathname === '/'} />}>
         <Route index element={<Catalog title='Пицца React' />} />
         <Route path='cart' element={<Cart title='Корзина' />} />
       </Route>

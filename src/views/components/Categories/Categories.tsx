@@ -1,59 +1,61 @@
 import { useEffect, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { ECategories, TCategories } from '../../../data/types';
+import { setCategory as setCategoryAction } from '../../../data/redux/filtersSlice';
+
 import { Radiobutton, Radiobuttons } from '../../ui/Radiobuttons';
 import s from './categories.module.scss';
 
 type TCategory = {
   id: number;
-  label: string;
+  value: TCategories;
 };
 
-interface ICategories {
-  onChange: (label: string) => void;
-}
-
-const categories = [
+const categories: TCategory[] = [
   {
     id: 0,
-    label: 'Все',
+    value: 'all',
   },
   {
     id: 1,
-    label: 'Мясные',
+    value: 'meat',
   },
   {
     id: 2,
-    label: 'Вегетарианские',
+    value: 'vegetarian',
   },
   {
     id: 3,
-    label: 'Гриль',
+    value: 'grill',
   },
   {
     id: 4,
-    label: 'Острые',
+    value: 'sharp',
   },
   {
     id: 5,
-    label: 'Закрытые',
+    value: 'closed',
   },
 ];
 
-export default function Categories({ onChange }: ICategories) {
-  const [selectedCategory, setSelectedCategory] = useState<number>(0);
+export default function Categories() {
+  const [category, setCategory] = useState<TCategories>('all');
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    onChange(categories[selectedCategory].label);
-  }, [selectedCategory, onChange]);
+    dispatch(setCategoryAction({ category }));
+  }, [category, dispatch]);
 
   return (
     <nav className={s.categories}>
-      <Radiobuttons<number>
+      <Radiobuttons<TCategories>
         name='categories'
-        selected={selectedCategory}
-        setSelected={setSelectedCategory}
+        selected={category}
+        setSelected={setCategory}
       >
-        {categories.map(({ id, label }: TCategory) => (
-          <Radiobutton key={id} value={id} label={label} />
+        {categories.map(({ id, value }: TCategory) => (
+          <Radiobutton key={id} value={value} label={ECategories[value]} />
         ))}
       </Radiobuttons>
     </nav>

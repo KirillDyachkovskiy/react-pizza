@@ -3,12 +3,10 @@ import { TPizza } from '../types';
 
 type TPizzas = {
   items: TPizza[];
-  isLoading: boolean;
 };
 
 const initialState: TPizzas = {
   items: [],
-  isLoading: false,
 };
 
 const filtersSlice = createSlice({
@@ -18,14 +16,8 @@ const filtersSlice = createSlice({
     setPizzas: (state: TPizzas, action: PayloadAction<{ items: TPizza[] }>) => {
       state.items = action.payload.items;
     },
-    setLoadStatus: (
-      state: TPizzas,
-      action: PayloadAction<{ status: boolean }>
-    ) => {
-      state.isLoading = action.payload.status;
-    },
   },
 });
 
-export const { setPizzas, setLoadStatus } = filtersSlice.actions;
+export const { setPizzas } = filtersSlice.actions;
 export default filtersSlice;

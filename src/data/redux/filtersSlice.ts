@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { TCategories } from '../types';
+
 type TFilters = {
   sortBy: string;
-  category: string;
+  category: TCategories;
 };
 
 const initialState: TFilters = {
   sortBy: '',
-  category: '',
+  category: 'all',
 };
 
 const filtersSlice = createSlice({
@@ -19,7 +21,7 @@ const filtersSlice = createSlice({
     },
     setCategory: (
       state: TFilters,
-      action: PayloadAction<{ category: string }>
+      action: PayloadAction<{ category: TCategories }>
     ) => {
       state.category = action.payload.category;
     },
