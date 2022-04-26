@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { TPizza } from './data/types';
-import Layout from './views/layout';
-import { Catalog } from './views/pages';
-import { Preloader } from './views/ui';
+import { useDispatch } from 'react-redux';
+
 import API from './data/api';
+import { setPizzas } from './data/redux/pizzasSlice';
+
+import Layout from './views/layout';
+import { Cart, Catalog } from './views/pages';
 
 export default function App() {
-  const [pizzas, setPizzas] = useState<TPizza[]>([]);
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    API.getPizzas().then(({ data }) => setPizzas(data));
-  }, []);
+    API.getPizzas().then(({ data }) => dispatch(setPizzas({ items: data })));
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -20,11 +22,8 @@ export default function App() {
         path='/'
         element={<Layout hasButton={location.pathname === '/'} />}
       >
-        <Route
-          index
-          element={<Catalog title='Пицца React' pizzas={pizzas} />}
-        />
-        <Route path='cart' element={<Preloader />} />
+        <Route index element={<Catalog title='Пицца React' />} />
+        <Route path='cart' element={<Cart title='Корзина' />} />
       </Route>
     </Routes>
   );

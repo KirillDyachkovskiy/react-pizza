@@ -1,0 +1,44 @@
+.simpleCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-top: 1px solid var(--gray-line);
+  width: 820px;
+  height: 140px;
+
+
+  &__info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  &__photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  &__name, &__count {
+    font-size: var(--px22);
+    font-weight: var(--w700);
+  }
+
+  &__calculator {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__description {
+    font-size: var(--px18);
+    font-weight: var(--w400);
+    opacity: 0.6;
+  }
+}

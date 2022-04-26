@@ -1,13 +1,16 @@
 .layout {
+  padding: 0 45px;
+
   &__wrapper {
-    margin: 45px;
+    margin: 45px auto;
+    max-width: 1340px;
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.03);
   }
 
   &__header {
-    padding: 40px 80px;
+    padding: 40px 50px;
     border-bottom: 1px solid var(--gray-line);
     display: flex;
     justify-content: space-between;
@@ -24,6 +27,6 @@
   }
 
   &__main {
-    padding: 40px 60px;
+    padding: 40px 50px;
   }
 }

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Button } from '../ui';
 import s from './layout.module.scss';
 
@@ -8,19 +8,23 @@ interface ILayout {
 
 export default function Layout({ hasButton }: ILayout) {
   return (
-    <div className={s.layout__wrapper}>
-      <header className={s.layout__header}>
-        <div>
-          <h1 className={s.layout__title}>REACT PIZZA</h1>
-          <span className={s.layout__subtitle}>
-            самая вкусная пицца во вселенной
-          </span>
-        </div>
-        {hasButton && <Button path='cart'>122 p</Button>}
-      </header>
-      <main className={s.layout__main}>
-        <Outlet />
-      </main>
+    <div className={s.layout}>
+      <div className={s.layout__wrapper}>
+        <header className={s.layout__header}>
+          <Link to='/'>
+            <div>
+              <h1 className={s.layout__title}>REACT PIZZA</h1>
+              <span className={s.layout__subtitle}>
+                самая вкусная пицца во вселенной
+              </span>
+            </div>
+          </Link>
+          {hasButton && <Button path='cart'>122 p</Button>}
+        </header>
+        <main className={s.layout__main}>
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
