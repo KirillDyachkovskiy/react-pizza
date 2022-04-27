@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import filtersSlice from './filtersSlice';
-import { pizzasApi } from './pizzasSlice';
-// import pizzasSlice from './pizzasSlice';
+import { pizzasApi } from './pizzasApi';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +12,6 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-// export const getPizzas = (state: RootState) => state.pizzas.items;
 export const getFilters = (state: RootState) => state.filters;
 
 export default store;

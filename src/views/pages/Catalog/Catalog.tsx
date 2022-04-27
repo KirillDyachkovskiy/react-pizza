@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTitle } from '../../../data/hooks';
-import { useGetPizzasQuery } from '../../../data/redux/pizzasSlice';
+import { useGetPizzasQuery } from '../../../data/redux/pizzasApi';
 
 import { ECategories, TPage, TPizza } from '../../../data/types';
 
@@ -28,7 +28,7 @@ export default function Catalog({ title }: TPage) {
       </header>
       <main className={s.catalogPage__main}>
         <h2 className={s.catalogPage__title}>
-          {ECategories[filters.category]} пиццы {isLoading.toString()}
+          {ECategories[filters.category]} пиццы
         </h2>
         <div className={s.catalogPage__catalog}>
           {isLoading
