@@ -18,7 +18,7 @@ export default function Catalog({ title }: TPage) {
 
   const filters = useSelector(getFilters);
 
-  const { data: pizzas, isLoading } = useGetPizzasQuery(filters);
+  const { data: pizzas, isFetching } = useGetPizzasQuery(filters);
 
   return (
     <section className={s.catalogPage}>
@@ -31,7 +31,7 @@ export default function Catalog({ title }: TPage) {
           {ECategories[filters.category]} пиццы
         </h2>
         <div className={s.catalogPage__catalog}>
-          {isLoading
+          {isFetching
             ? Array.from(Array(4).keys()).map((num: number) => (
                 <CardPreloader key={num} />
               ))
