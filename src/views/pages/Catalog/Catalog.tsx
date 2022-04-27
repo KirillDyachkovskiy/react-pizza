@@ -2,17 +2,18 @@ import { useSelector } from 'react-redux';
 import { useTitle } from '../../../data/hooks';
 
 import { ECategories, TPage, TPizza } from '../../../data/types';
-import { getCategory, getPizzas } from '../../../data/redux/store';
+import { getCategory } from '../../../data/redux/store';
 
 import { Card, CatalogSorter, Categories } from '../../components';
 import s from './catalog.module.scss';
 
-export default function Catalog({ title }: TPage) {
+export default function Catalog({
+  title,
+  pizzas,
+}: TPage & { pizzas: TPizza[] }) {
   useTitle(title);
 
   const categoryFilter = useSelector(getCategory);
-
-  const pizzas = useSelector(getPizzas);
 
   return (
     <section className={s.catalogPage}>

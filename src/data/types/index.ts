@@ -12,7 +12,7 @@ export type TPizza = {
   types: TPizzaType[];
   sizes: TPizzaSize[];
   price: number;
-  category: number;
+  category: TCategories;
   rating: number;
 };
 
@@ -28,9 +28,9 @@ export enum ECategories {
 export type TCategories = keyof typeof ECategories;
 
 export enum ESortType {
-  popularity = 'по популярности',
+  rating = 'по популярности',
   price = 'по цене',
-  alphabetical = 'по алфавиту',
+  name = 'по алфавиту',
 }
 
 export type TSortType = keyof typeof ESortType;
