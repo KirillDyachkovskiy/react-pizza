@@ -14,7 +14,6 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 // export const getPizzas = (state: RootState) => state.pizzas.items;
-export const getCategory = (state: RootState) => state.filters.category;
-export const getSortType = (state: RootState) => state.filters.sortType;
+export const getFilters = (state: RootState) => state.filters;
 
 export default store;

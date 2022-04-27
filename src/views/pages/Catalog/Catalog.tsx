@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useTitle } from '../../../data/hooks';
 
 import { ECategories, TPage, TPizza } from '../../../data/types';
-import { getCategory } from '../../../data/redux/store';
+import { getFilters } from '../../../data/redux/store';
 
 import { Card, CatalogSorter, Categories } from '../../components';
 import s from './catalog.module.scss';
@@ -13,7 +13,7 @@ export default function Catalog({
 }: TPage & { pizzas: TPizza[] }) {
   useTitle(title);
 
-  const categoryFilter = useSelector(getCategory);
+  const { category } = useSelector(getFilters);
 
   return (
     <section className={s.catalogPage}>
@@ -22,12 +22,10 @@ export default function Catalog({
         <CatalogSorter name='pizzasSorter' />
       </header>
       <main className={s.catalogPage__main}>
-        <h2 className={s.catalogPage__title}>
-          {ECategories[categoryFilter]} пиццы
-        </h2>
+        <h2 className={s.catalogPage__title}>{ECategories[category]} пиццы</h2>
         <div className={s.catalogPage__catalog}>
-          {pizzas.map(({ category, rating, ...pizza }: TPizza) => (
-            <Card {...pizza} />
+          {pizzas.map(({ category: noUsed, rating, ...pizza }: TPizza) => (
+            <Card key={pizza.id} {...pizza} />
           ))}
         </div>
       </main>

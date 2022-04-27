@@ -13,7 +13,7 @@ export const pizzasApi = createApi({
         url: 'pizzas',
         params: {
           _sort: sortType,
-          category,
+          ...(category !== 'all' && { category }),
         },
       }),
     }),

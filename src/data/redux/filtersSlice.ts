@@ -8,7 +8,7 @@ type TFilters = {
 };
 
 const initialState: TFilters = {
-  sortType: 'popularity',
+  sortType: 'rating',
   category: 'all',
 };
 
