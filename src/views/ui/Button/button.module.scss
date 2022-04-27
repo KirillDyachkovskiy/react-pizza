@@ -10,6 +10,7 @@
   width: fit-content;
   white-space: nowrap;
   box-sizing: border-box;
+  user-select: none;
 
   &:focus {
     outline: none;
@@ -46,8 +47,8 @@
 
 .button_type_black {
   background-color: var(--white);
-  border: 1px solid var(--black);
-  color: var(--black);
+  border: 1px solid var(--gray);
+  color: var(--gray);
 
   &:not(:disabled) {
     &:hover,
