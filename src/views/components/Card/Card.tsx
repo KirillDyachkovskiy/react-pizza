@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import { TPizzaSize, TPizzaType } from '../../../data/types';
+
 import { Image, Tabs, TabsGroup, Tab, Cost, Button } from '../../ui';
 import s from './card.module.scss';
 
