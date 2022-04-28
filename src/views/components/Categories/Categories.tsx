@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { ECategories, TCategories } from '../../../data/types';
-import { setCategory as setCategoryAction } from '../../../data/redux/filtersSlice';
+import { setCategory as setCategoryAction } from '../../../data/redux/catalogSlice';
 
 import { Radiobutton, Radiobuttons } from '../../ui/Radiobuttons';
 import s from './categories.module.scss';

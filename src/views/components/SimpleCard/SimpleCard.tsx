@@ -1,12 +1,13 @@
 import s from './simpleCard.module.scss';
 import { Button, Cost, Image } from '../../ui';
+import { EPizzaType, TPizzaSize, TPizzaType } from '../../../data/types';
 
 interface IButton {
   name: string;
   price: number;
   imageUrl: string;
-  type: string;
-  size: number;
+  type: TPizzaType;
+  size: TPizzaSize;
   count: number;
 }
 
@@ -27,7 +28,7 @@ export default function SimpleCard({
         <div>
           <h2 className={s.simpleCard__name}>{name}</h2>
           <span className={s.simpleCard__description}>
-            {`${type} тесто, ${size} см.`}
+            {`${EPizzaType[type]} тесто, ${size} см.`}
           </span>
         </div>
       </div>

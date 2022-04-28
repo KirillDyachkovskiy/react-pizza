@@ -7,6 +7,7 @@ interface IButton {
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   path?: string;
+  count?: number;
   type?: 'orange' | 'black';
   htmlType?: 'button' | 'submit';
 }
@@ -16,6 +17,7 @@ export default function Button({
   disabled = false,
   onClick,
   path,
+  count,
   type = 'orange',
   htmlType = 'button',
 }: IButton) {
@@ -39,6 +41,7 @@ export default function Button({
       disabled={disabled}
     >
       {children}
+      {!!count && <span className={s.button__circle}>{count}</span>}
     </button>
   );
 }

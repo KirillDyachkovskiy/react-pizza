@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filtersSlice from './filtersSlice';
+import catalogSlice from './catalogSlice';
+import cartSlice from './cartSlice';
 import { pizzasApi } from './pizzasApi';
 
 const store = configureStore({
   reducer: {
-    filters: filtersSlice.reducer,
+    catalog: catalogSlice.reducer,
+    cart: cartSlice.reducer,
     [pizzasApi.reducerPath]: pizzasApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -12,6 +14,7 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const getFilters = (state: RootState) => state.filters;
+export const selectFilters = (state: RootState) => state.catalog;
+export const selectCartPizzas = (state: RootState) => state.cart.pizzas;
 
 export default store;

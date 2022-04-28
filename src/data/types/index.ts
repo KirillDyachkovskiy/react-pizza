@@ -2,7 +2,13 @@ export type TPage = {
   title: string;
 };
 
-export type TPizzaType = 0 | 1;
+export enum EPizzaType {
+  traditional = 'традицилнное',
+  thin = 'тонкое',
+}
+
+export type TPizzaType = keyof typeof EPizzaType;
+
 export type TPizzaSize = 26 | 30 | 40;
 
 export type TPizza = {
@@ -15,6 +21,22 @@ export type TPizza = {
   category: TCategories;
   rating: number;
 };
+
+export type TCartItem = {
+  id: number;
+  name: string;
+  imageUrl: string;
+  type: TPizzaType;
+  size: TPizzaSize;
+  count: number;
+  price: number;
+};
+export type TPizzaParams = {
+  type: TPizzaType;
+  size: TPizzaSize;
+};
+
+export type TCartItemPayload = Omit<TCartItem, 'count'>;
 
 export enum ECategories {
   all = 'Все',

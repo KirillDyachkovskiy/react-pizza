@@ -17,11 +17,13 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 30px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
   }
 
   &__description {
-    margin-top: -20px;
     width: 570px;
     text-align: center;
     font-size: var(--px18);

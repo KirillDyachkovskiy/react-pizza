@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getFilters } from '../../../data/redux/store';
-import { setSortType } from '../../../data/redux/filtersSlice';
+import { selectFilters } from '../../../data/redux/store';
+import { setSortType } from '../../../data/redux/catalogSlice';
 import { ESortType, TSortType } from '../../../data/types';
 
 import { Dropdown } from '../../ui';
@@ -13,7 +13,7 @@ interface ICatalogSorter {
 
 export default function CatalogSorter({ name }: ICatalogSorter) {
   const dispatch = useDispatch();
-  const { sortType } = useSelector(getFilters);
+  const { sortType } = useSelector(selectFilters);
 
   const handleTypeChange = (
     newSortType: TSortType,

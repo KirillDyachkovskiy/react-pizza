@@ -1,21 +1,40 @@
 import { useState } from 'react';
 
-import { TPizzaSize, TPizzaType } from '../../../data/types';
+import {
+  EPizzaType,
+  TPizzaParams,
+  TPizzaSize,
+  TPizzaType,
+} from '../../../data/types';
 
 import { Image, Tabs, TabsGroup, Tab, Cost, Button } from '../../ui';
 import s from './card.module.scss';
 
-interface IButton {
+interface ICard {
   name: string;
   price: number;
   imageUrl: string;
   types: TPizzaType[];
   sizes: TPizzaSize[];
+  getPizzaParams: (pizzaParams: TPizzaParams) => void;
 }
 
-export default function Card({ name, price, imageUrl, types, sizes }: IButton) {
-  const [selectedType, setSelectedType] = useState<TPizzaType>(types[0]);
-  const [selectedSize, setSelectedSize] = useState<TPizzaSize>(sizes[0]);
+export default function Card({
+  name,
+  price,
+  imageUrl,
+  types,
+  sizes,
+  getPizzaParams,
+}: ICard) {
+  const [type, setType] = useState<TPizzaType>(types[0]);
+  const [size, setSize] = useState<TPizzaSize>(sizes[0]);
+  const [count, setCount] = useState<number>(0);
+
+  const handleAdd = () => {
+    getPizzaParams({ type, size });
+    setCount((prevState) => prevState + 1);
+  };
 
   return (
     <article className={s.card}>
@@ -27,16 +46,24 @@ export default function Card({ name, price, imageUrl, types, sizes }: IButton) {
         <Tabs>
           <TabsGroup<TPizzaType>
             name={`${name}_type`}
-            activeTab={selectedType}
-            setActiveTab={setSelectedType}
+            activeTab={type}
+            setActiveTab={setType}
           >
-            <Tab value={0} label='тонкое' disabled={!types.includes(0)} />
-            <Tab value={1} label='традиционное' disabled={!types.includes(1)} />
+            <Tab
+              value='thin'
+              label={EPizzaType.thin}
+              disabled={!types.includes('thin')}
+            />
+            <Tab
+              value='traditional'
+              label={EPizzaType.traditional}
+              disabled={!types.includes('traditional')}
+            />
           </TabsGroup>
           <TabsGroup<TPizzaSize>
             name={`${name}_size`}
-            activeTab={selectedSize}
-            setActiveTab={setSelectedSize}
+            activeTab={size}
+            setActiveTab={setSize}
           >
             <Tab value={26} label='26 см.' disabled={!sizes.includes(26)} />
             <Tab value={30} label='30 см.' disabled={!sizes.includes(30)} />
@@ -46,7 +73,9 @@ export default function Card({ name, price, imageUrl, types, sizes }: IButton) {
       </div>
       <div className={s.card__submit}>
         <Cost value={price} prefix='от ' />
-        <Button>Добавить</Button>
+        <Button onClick={handleAdd} count={count}>
+          Добавить
+        </Button>
       </div>
     </article>
   );

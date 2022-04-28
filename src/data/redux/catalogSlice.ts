@@ -2,28 +2,28 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TCategories, TSortType } from '../types';
 
-type TFilters = {
+type TCatalog = {
   sortType: TSortType;
   category: TCategories;
 };
 
-const initialState: TFilters = {
+const initialState: TCatalog = {
   sortType: 'rating',
   category: 'all',
 };
 
-const filtersSlice = createSlice({
-  name: 'filters',
+const catalogSlice = createSlice({
+  name: 'catalog',
   initialState,
   reducers: {
     setSortType: (
-      state: TFilters,
+      state: TCatalog,
       action: PayloadAction<{ sortType: TSortType }>
     ) => {
       state.sortType = action.payload.sortType;
     },
     setCategory: (
-      state: TFilters,
+      state: TCatalog,
       action: PayloadAction<{ category: TCategories }>
     ) => {
       state.category = action.payload.category;
@@ -31,5 +31,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { setSortType, setCategory } = filtersSlice.actions;
-export default filtersSlice;
+export const { setSortType, setCategory } = catalogSlice.actions;
+export default catalogSlice;
