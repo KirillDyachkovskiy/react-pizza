@@ -1,4 +1,4 @@
+export { CatalogCard, CatalogCardPreloader } from './CatalogCard';
+export { default as CatalogCategories } from './CatalogCategories';
 export { default as CatalogSorter } from './CatalogSorter';
-export { default as Categories } from './Categories';
-export { default as SimpleCard } from './SimpleCard';
-export { Card, CardPreloader } from './Card';
+export { default as CartCard } from './CartCard';

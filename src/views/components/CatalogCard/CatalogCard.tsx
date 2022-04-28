@@ -8,7 +8,7 @@ import {
 } from '../../../data/types';
 
 import { Image, Tabs, TabsGroup, Tab, Cost, Button } from '../../ui';
-import s from './card.module.scss';
+import s from './catalogCard.module.scss';
 
 interface ICard {
   name: string;
@@ -19,7 +19,7 @@ interface ICard {
   getPizzaParams: (pizzaParams: TPizzaParams) => void;
 }
 
-export default function Card({
+export default function CatalogCard({
   name,
   price,
   imageUrl,

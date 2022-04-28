@@ -5,14 +5,14 @@ import { ECategories, TCategories } from '../../../data/types';
 import { setCategory as setCategoryAction } from '../../../data/redux/catalogSlice';
 
 import { Radiobutton, Radiobuttons } from '../../ui/Radiobuttons';
-import s from './categories.module.scss';
+import s from './catalogCategories.module.scss';
 
 type TCategory = {
   id: number;
   value: TCategories;
 };
 
-const categories: TCategory[] = [
+const catalogCategories: TCategory[] = [
   {
     id: 0,
     value: 'all',
@@ -54,7 +54,7 @@ export default function Categories() {
         selected={category}
         setSelected={setCategory}
       >
-        {categories.map(({ id, value }: TCategory) => (
+        {catalogCategories.map(({ id, value }: TCategory) => (
           <Radiobutton key={id} value={value} label={ECategories[value]} />
         ))}
       </Radiobuttons>

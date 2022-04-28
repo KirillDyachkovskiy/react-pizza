@@ -30,8 +30,11 @@ const cartSlice = createSlice({
         state.pizzas.push({ ...action.payload, count: 1 });
       }
     },
+    clearCart: (state: TCart) => {
+      state.pizzas = [];
+    },
   },
 });
 
-export const { pushPizzaToCart } = cartSlice.actions;
+export const { pushPizzaToCart, clearCart } = cartSlice.actions;
 export default cartSlice;

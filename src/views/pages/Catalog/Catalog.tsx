@@ -6,10 +6,10 @@ import { selectFilters } from '../../../data/redux/store';
 
 import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
 import {
-  Card,
-  CardPreloader,
+  CatalogCard,
+  CatalogCardPreloader,
   CatalogSorter,
-  Categories,
+  CatalogCategories,
 } from '../../components';
 import s from './catalog.module.scss';
 
@@ -31,7 +31,7 @@ export default function Catalog({ title }: TPage) {
   return (
     <section className={s.catalogPage}>
       <header className={s.catalogPage__header}>
-        <Categories />
+        <CatalogCategories />
         <CatalogSorter name='pizzasSorter' />
       </header>
       <main className={s.catalogPage__main}>
@@ -41,10 +41,10 @@ export default function Catalog({ title }: TPage) {
         <div className={s.catalogPage__catalog}>
           {isFetching
             ? Array.from(Array(4).keys()).map((num: number) => (
-                <CardPreloader key={num} />
+                <CatalogCardPreloader key={num} />
               ))
             : pizzas?.map(({ category: noUsed, rating, ...pizza }: TPizza) => (
-                <Card
+                <CatalogCard
                   key={pizza.id}
                   {...pizza}
                   getPizzaParams={(pizzaParams: TPizzaParams) =>

@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-export default function CardPreloader() {
+export default function CatalogCardPreloader() {
   return (
     <ContentLoader
       speed={2}

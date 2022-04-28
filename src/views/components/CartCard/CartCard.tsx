@@ -1,6 +1,6 @@
-import s from './simpleCard.module.scss';
-import { Button, Cost, Image } from '../../ui';
 import { EPizzaType, TPizzaSize, TPizzaType } from '../../../data/types';
+import { Button, Cost, Image } from '../../ui';
+import s from './cartCard.module.scss';
 
 interface IButton {
   name: string;
@@ -11,7 +11,7 @@ interface IButton {
   count: number;
 }
 
-export default function SimpleCard({
+export default function CartCard({
   name,
   price,
   imageUrl,

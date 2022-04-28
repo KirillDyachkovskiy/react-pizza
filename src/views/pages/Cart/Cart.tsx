@@ -1,17 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTitle } from '../../../data/hooks';
 import { TCartItem, TPage } from '../../../data/types';
-import { SimpleCard } from '../../components';
+
+import { clearCart } from '../../../data/redux/cartSlice';
+import { selectCartPizzas } from '../../../data/redux/store';
+
+import { CartCard } from '../../components';
 import { Button, Cost, Image } from '../../ui';
+import s from './cart.module.scss';
 
 import emptyCart from '../../assets/images/empty-cart.png';
-import s from './cart.module.scss';
-import { selectCartPizzas } from '../../../data/redux/store';
 
 export default function Cart({ title }: TPage) {
   useTitle(title);
 
   const pizzas = useSelector(selectCartPizzas);
+  const dispatch = useDispatch();
 
   if (!pizzas.length) {
     return (
@@ -38,10 +42,12 @@ export default function Cart({ title }: TPage) {
       <div className={s.cartPage__wrapper}>
         <header className={s.cartPage__header}>
           <h2>Корзина</h2>
-          <Button>Очистить корзину</Button>
+          <Button onClick={() => dispatch(clearCart())}>
+            Очистить корзину
+          </Button>
         </header>
         {pizzas.map((pizza: TCartItem) => (
-          <SimpleCard
+          <CartCard
             key={`${pizza.id}_${pizza.type}_${pizza.size}`}
             name={pizza.name}
             price={pizza.price}
