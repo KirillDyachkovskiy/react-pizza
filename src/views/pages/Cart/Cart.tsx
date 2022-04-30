@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useTitle } from '../../../data/hooks';
+import { useTitle } from '../../../data/helpers';
 import {
   TCartItem,
   TAddPizzaToCartPayload,

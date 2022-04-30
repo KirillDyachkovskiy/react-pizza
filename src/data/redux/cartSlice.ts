@@ -4,7 +4,7 @@ import {
   TAddPizzaToCartPayload,
   TPizzaIdentification,
 } from '../types';
-import { isSamePizza } from '../hooks';
+import { isSamePizza } from '../helpers';
 
 type TCart = {
   pizzas: TCartItem[];
