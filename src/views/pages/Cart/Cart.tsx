@@ -13,7 +13,7 @@ import {
   removePizzaFromCart,
   subtractPizzaFromCart,
 } from '../../../data/redux/cartSlice';
-import { selectCartPizzas } from '../../../data/redux/store';
+import { selectCartPizzas, selectTotalValues } from '../../../data/redux/store';
 
 import { CartCard } from '../../components';
 import { Button, Cost, Image } from '../../ui';
@@ -25,6 +25,8 @@ export default function Cart({ title }: TPage) {
   useTitle(title);
 
   const pizzas = useSelector(selectCartPizzas);
+  const { count, price } = useSelector(selectTotalValues);
+
   const dispatch = useDispatch();
 
   const handleAddPizza = (pizza: TAddPizzaToCartPayload) => {
@@ -82,7 +84,7 @@ export default function Cart({ title }: TPage) {
         <footer className={s.cartPage__footer}>
           <div className={s.cartPage__cancel}>
             <p className={s.cartPage__summary}>
-              Всего пицц: <span className={s.cartPage__count}>{3} шт.</span>
+              Всего пицц: <span className={s.cartPage__count}>{count} шт.</span>
             </p>
             <Button path='/' type='black'>
               Вернуться назад
@@ -90,7 +92,7 @@ export default function Cart({ title }: TPage) {
           </div>
           <div className={s.cartPage__submit}>
             <p className={s.cartPage__summary}>
-              Сумма заказа: <Cost value={900} color='orange' />
+              Сумма заказа: <Cost value={price} color='orange' />
             </p>
             <Button onClick={() => {}}>Оплатить сейчас</Button>
           </div>

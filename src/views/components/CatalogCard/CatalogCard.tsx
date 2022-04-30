@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState, selectPizzaCount } from '../../../data/redux/store';
 import {
   EPizzaType,
   TPizzaParams,
@@ -11,6 +13,7 @@ import { Image, Tabs, TabsGroup, Tab, Cost, Button } from '../../ui';
 import s from './catalogCard.module.scss';
 
 interface ICard {
+  id: number;
   name: string;
   price: number;
   imageUrl: string;
@@ -20,6 +23,7 @@ interface ICard {
 }
 
 export default function CatalogCard({
+  id,
   name,
   price,
   imageUrl,
@@ -29,11 +33,11 @@ export default function CatalogCard({
 }: ICard) {
   const [type, setType] = useState<TPizzaType>(types[0]);
   const [size, setSize] = useState<TPizzaSize>(sizes[0]);
-  const [count, setCount] = useState<number>(0);
+
+  const count = useSelector((state: RootState) => selectPizzaCount(state, id));
 
   const handleAdd = () => {
     getPizzaParams({ type, size });
-    setCount((prevState) => prevState + 1);
   };
 
   return (

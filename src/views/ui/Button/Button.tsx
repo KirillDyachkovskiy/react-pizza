@@ -7,7 +7,7 @@ interface IButton {
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   path?: string;
-  count?: number;
+  count?: number | string;
   type?: 'orange' | 'black';
   htmlType?: 'button' | 'submit';
 }

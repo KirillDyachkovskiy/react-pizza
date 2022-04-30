@@ -5,7 +5,7 @@ import {
   TPizzaSize,
   TPizzaType,
 } from '../../../data/types';
-import { Button, Cost, Image } from '../../ui';
+import { Button, Cost, Icon, Image } from '../../ui';
 import s from './cartCard.module.scss';
 
 interface IButton {
@@ -59,7 +59,7 @@ export default function CartCard({
               })
             }
           >
-            -
+            <Icon name='minus' className={s.cartCard__icon} />
           </Button>
           <span className={s.cartCard__count}>{count}</span>
           <Button
@@ -74,7 +74,7 @@ export default function CartCard({
               })
             }
           >
-            +
+            <Icon name='plus' className={s.cartCard__icon} />
           </Button>
         </div>
         <Cost value={totalPrice} />

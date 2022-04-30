@@ -16,6 +16,11 @@
     justify-content: space-between;
   }
 
+  &__info {
+    display: flex;
+    gap: 15px;
+  }
+
   &__title {
     font-weight: var(--w800);
     font-size: var(--px24);

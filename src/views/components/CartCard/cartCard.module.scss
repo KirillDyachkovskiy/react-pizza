@@ -19,6 +19,12 @@
     height: 80px;
   }
 
+  &__icon {
+    margin: 0 -7px;
+    width: 20px;
+    height: 20px;
+  }
+
   &__name, &__count {
     font-size: var(--px22);
     font-weight: var(--w700);
@@ -32,9 +38,10 @@
   }
 
   &__counter {
+    width: 130px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
   }
 
   &__description {

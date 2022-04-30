@@ -62,3 +62,5 @@ export enum ESortType {
 }
 
 export type TSortType = keyof typeof ESortType;
+
+export type TIcon = 'pizza' | 'cross' | 'minus' | 'plus' | 'trash';

@@ -122,6 +122,8 @@
     ],
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "import/no-dynamic-require": 0,
+    "global-require": 0
   }
 }
