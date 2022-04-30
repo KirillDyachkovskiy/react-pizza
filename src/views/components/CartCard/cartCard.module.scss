@@ -1,4 +1,4 @@
-.simpleCard {
+.cartCard {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,9 +25,10 @@
   }
 
   &__calculator {
+    width: 380px;
     display: flex;
     align-items: center;
-    gap: 90px;
+    justify-content: space-between;
   }
 
   &__counter {

@@ -30,13 +30,19 @@ export type TCartItem = {
   size: TPizzaSize;
   count: number;
   price: number;
+  totalPrice: number;
 };
 export type TPizzaParams = {
   type: TPizzaType;
   size: TPizzaSize;
 };
 
-export type TCartItemPayload = Omit<TCartItem, 'count'>;
+export type TAddPizzaToCartPayload = Omit<TCartItem, 'count' | 'totalPrice'>;
+export type TPizzaIdentification = {
+  id: number;
+  type: TPizzaType;
+  size: TPizzaSize;
+};
 
 export enum ECategories {
   all = 'Все',

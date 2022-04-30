@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TCartItem, TCartItemPayload } from '../types';
+import {
+  TCartItem,
+  TAddPizzaToCartPayload,
+  TPizzaIdentification,
+} from '../types';
+import { isSamePizza } from '../hooks';
 
 type TCart = {
   pizzas: TCartItem[];
@@ -15,20 +20,62 @@ const cartSlice = createSlice({
   reducers: {
     pushPizzaToCart: (
       state: TCart,
-      action: PayloadAction<TCartItemPayload>
+      action: PayloadAction<TAddPizzaToCartPayload>
     ) => {
       try {
-        const currentPizzaIndex = state.pizzas.findIndex(
-          (pizza: TCartItem) =>
-            pizza.id === action.payload.id &&
-            pizza.type === action.payload.type &&
-            pizza.size === action.payload.size
-        );
+        const {
+          id: newPizzaId,
+          type: newPizzaType,
+          size: newPizzaSize,
+        } = action.payload;
+
+        const currentPizzaIndex = state.pizzas.findIndex((pizza: TCartItem) => {
+          const { id, type, size } = pizza;
+
+          return isSamePizza(
+            { id, type, size },
+            { id: newPizzaId, type: newPizzaType, size: newPizzaSize }
+          );
+        });
 
         state.pizzas[currentPizzaIndex].count += 1;
+        state.pizzas[currentPizzaIndex].totalPrice +=
+          state.pizzas[currentPizzaIndex].price;
       } catch {
-        state.pizzas.push({ ...action.payload, count: 1 });
+        state.pizzas.push({
+          ...action.payload,
+          count: 1,
+          totalPrice: action.payload.price,
+        });
       }
+    },
+    subtractPizzaFromCart: (
+      state: TCart,
+      action: PayloadAction<TPizzaIdentification>
+    ) => {
+      const currentPizzaIndex = state.pizzas.findIndex((pizza: TCartItem) => {
+        const { id, type, size } = pizza;
+
+        return isSamePizza({ id, type, size }, action.payload);
+      });
+
+      if (state.pizzas[currentPizzaIndex].count > 1) {
+        state.pizzas[currentPizzaIndex].count -= 1;
+        state.pizzas[currentPizzaIndex].totalPrice -=
+          state.pizzas[currentPizzaIndex].price;
+      }
+    },
+    removePizzaFromCart: (
+      state: TCart,
+      action: PayloadAction<TPizzaIdentification>
+    ) => {
+      const currentPizzaIndex = state.pizzas.findIndex((pizza: TCartItem) => {
+        const { id, type, size } = pizza;
+
+        return isSamePizza({ id, type, size }, action.payload);
+      });
+
+      state.pizzas.splice(currentPizzaIndex, 1);
     },
     clearCart: (state: TCart) => {
       state.pizzas = [];
@@ -36,5 +83,10 @@ const cartSlice = createSlice({
   },
 });
 
-export const { pushPizzaToCart, clearCart } = cartSlice.actions;
+export const {
+  pushPizzaToCart,
+  subtractPizzaFromCart,
+  removePizzaFromCart,
+  clearCart,
+} = cartSlice.actions;
 export default cartSlice;

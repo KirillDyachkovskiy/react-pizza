@@ -1,8 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useTitle } from '../../../data/hooks';
-import { TCartItem, TPage } from '../../../data/types';
+import {
+  TCartItem,
+  TAddPizzaToCartPayload,
+  TPage,
+  TPizzaIdentification,
+} from '../../../data/types';
 
-import { clearCart } from '../../../data/redux/cartSlice';
+import {
+  clearCart,
+  pushPizzaToCart,
+  removePizzaFromCart,
+  subtractPizzaFromCart,
+} from '../../../data/redux/cartSlice';
 import { selectCartPizzas } from '../../../data/redux/store';
 
 import { CartCard } from '../../components';
@@ -16,6 +26,22 @@ export default function Cart({ title }: TPage) {
 
   const pizzas = useSelector(selectCartPizzas);
   const dispatch = useDispatch();
+
+  const handleAddPizza = (pizza: TAddPizzaToCartPayload) => {
+    dispatch(pushPizzaToCart(pizza));
+  };
+
+  const handleSubtractPizza = (pizza: TPizzaIdentification) => {
+    dispatch(subtractPizzaFromCart(pizza));
+  };
+
+  const handleRemovePizza = (pizza: TPizzaIdentification) => {
+    dispatch(removePizzaFromCart(pizza));
+  };
+
+  const handleCartClear = () => {
+    dispatch(clearCart());
+  };
 
   if (!pizzas.length) {
     return (
@@ -42,19 +68,15 @@ export default function Cart({ title }: TPage) {
       <div className={s.cartPage__wrapper}>
         <header className={s.cartPage__header}>
           <h2>Корзина</h2>
-          <Button onClick={() => dispatch(clearCart())}>
-            Очистить корзину
-          </Button>
+          <Button onClick={handleCartClear}>Очистить корзину</Button>
         </header>
         {pizzas.map((pizza: TCartItem) => (
           <CartCard
             key={`${pizza.id}_${pizza.type}_${pizza.size}`}
-            name={pizza.name}
-            price={pizza.price}
-            imageUrl={pizza.imageUrl}
-            type={pizza.type}
-            size={pizza.size}
-            count={pizza.count}
+            {...pizza}
+            onPizzaAdd={handleAddPizza}
+            onPizzaSubtract={handleSubtractPizza}
+            onPizzaRemove={handleRemovePizza}
           />
         ))}
         <footer className={s.cartPage__footer}>
