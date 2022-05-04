@@ -1,16 +1,14 @@
-import { useSelector } from 'react-redux';
 import { useActions } from '../../../data/hooks';
-import { selectFilters } from '../../../data/redux/store';
 import { ESortType, TSortType } from '../../../data/types';
 import { Dropdown } from '../../ui';
 import s from './catalogSorter.module.scss';
 
 interface ICatalogSorter {
   name: string;
+  sortType: TSortType;
 }
 
-export default function CatalogSorter({ name }: ICatalogSorter) {
-  const { sortType } = useSelector(selectFilters);
+export default function CatalogSorter({ name, sortType }: ICatalogSorter) {
   const { setSortType } = useActions();
 
   const handleTypeChange = (

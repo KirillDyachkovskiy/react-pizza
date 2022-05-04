@@ -1,7 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../data/hooks';
 import { selectTotalValues } from '../../data/redux/store';
-
 import { Button, Icon } from '../ui';
 import s from './layout.module.scss';
 
@@ -10,7 +9,7 @@ interface ILayout {
 }
 
 export default function Layout({ hasButton }: ILayout) {
-  const { count, price } = useSelector(selectTotalValues);
+  const { count, price } = useAppSelector(selectTotalValues);
 
   return (
     <div className={s.layout}>

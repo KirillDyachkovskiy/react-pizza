@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../../data/hooks';
 
-import { RootState, selectPizzaCount } from '../../../data/redux/store';
+import { TRootState, selectPizzaCount } from '../../../data/redux/store';
 import {
   EPizzaType,
   TPizzaParams,
@@ -34,7 +34,9 @@ export default function CatalogCard({
   const [type, setType] = useState<TPizzaType>(types[0]);
   const [size, setSize] = useState<TPizzaSize>(sizes[0]);
 
-  const count = useSelector((state: RootState) => selectPizzaCount(state, id));
+  const count = useAppSelector((state: TRootState) =>
+    selectPizzaCount(state, id)
+  );
 
   const handleAdd = () => {
     getPizzaParams({ type, size });

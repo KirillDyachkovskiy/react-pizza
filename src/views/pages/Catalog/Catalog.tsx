@@ -1,6 +1,5 @@
-import { useSelector } from 'react-redux';
 import { useGetPizzasQuery } from '../../../data/redux/pizzasApi';
-import { useActions, useTitle } from '../../../data/hooks';
+import { useActions, useAppSelector, useTitle } from '../../../data/hooks';
 import { selectFilters } from '../../../data/redux/store';
 import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
 import {
@@ -14,7 +13,7 @@ import s from './catalog.module.scss';
 export default function Catalog({ title }: TPage) {
   useTitle(title);
 
-  const filters = useSelector(selectFilters);
+  const filters = useAppSelector(selectFilters);
   const { pushPizzaToCart } = useActions();
 
   const { data: pizzas, isFetching } = useGetPizzasQuery(filters);
@@ -23,7 +22,7 @@ export default function Catalog({ title }: TPage) {
     <section className={s.catalogPage}>
       <header className={s.catalogPage__header}>
         <CatalogCategories />
-        <CatalogSorter name='pizzasSorter' />
+        <CatalogSorter name='pizzasSorter' sortType={filters.sortType} />
       </header>
       <main className={s.catalogPage__main}>
         <h2 className={s.catalogPage__title}>

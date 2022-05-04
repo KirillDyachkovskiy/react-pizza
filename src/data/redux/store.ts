@@ -14,10 +14,10 @@ const store = configureStore({
     getDefaultMiddleware().concat(pizzasApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type TRootState = ReturnType<typeof store.getState>;
 
-export const selectFilters = (state: RootState) => state.catalog;
-export const selectCartPizzas = (state: RootState) => state.cart.pizzas;
+export const selectFilters = (state: TRootState) => state.catalog;
+export const selectCartPizzas = (state: TRootState) => state.cart.pizzas;
 export const selectTotalValues = createSelector(
   [selectCartPizzas],
   (pizzas: TCartItem[]) =>
@@ -30,7 +30,7 @@ export const selectTotalValues = createSelector(
     )
 );
 
-const selectPizzaId = (state: RootState, pizzaId: number) => pizzaId;
+const selectPizzaId = (state: TRootState, pizzaId: number) => pizzaId;
 
 export const selectPizzaCount = createSelector(
   [selectCartPizzas, selectPizzaId],

@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-import { useActions, useTitle } from '../../../data/hooks';
+import { useActions, useAppSelector, useTitle } from '../../../data/hooks';
 import { selectCartPizzas, selectTotalValues } from '../../../data/redux/store';
 import { TCartItem, TPage } from '../../../data/types';
 import { CartCard } from '../../components';
@@ -11,8 +10,8 @@ import emptyCart from '../../assets/images/empty-cart.png';
 export default function Cart({ title }: TPage) {
   useTitle(title);
 
-  const pizzas = useSelector(selectCartPizzas);
-  const { count, price } = useSelector(selectTotalValues);
+  const pizzas = useAppSelector(selectCartPizzas);
+  const { count, price } = useAppSelector(selectTotalValues);
   const {
     pushPizzaToCart,
     subtractPizzaFromCart,
