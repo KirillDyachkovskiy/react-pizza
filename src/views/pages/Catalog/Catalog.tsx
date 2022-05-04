@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useTitle } from '../../../data/helpers';
+import { useSelector } from 'react-redux';
 import { useGetPizzasQuery } from '../../../data/redux/pizzasApi';
-import { pushPizzaToCart } from '../../../data/redux/cartSlice';
+import { useActions, useTitle } from '../../../data/hooks';
 import { selectFilters } from '../../../data/redux/store';
-
 import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
 import {
   CatalogCard,
@@ -17,16 +15,9 @@ export default function Catalog({ title }: TPage) {
   useTitle(title);
 
   const filters = useSelector(selectFilters);
-  const dispatch = useDispatch();
+  const { pushPizzaToCart } = useActions();
 
   const { data: pizzas, isFetching } = useGetPizzasQuery(filters);
-
-  const handleAddPizzaToCart = (
-    pizzaParams: TPizzaParams,
-    pizza: Omit<TPizza, 'category' | 'rating'>
-  ) => {
-    dispatch(pushPizzaToCart({ ...pizza, ...pizzaParams }));
-  };
 
   return (
     <section className={s.catalogPage}>
@@ -48,7 +39,7 @@ export default function Catalog({ title }: TPage) {
                   key={pizza.id}
                   {...pizza}
                   getPizzaParams={(pizzaParams: TPizzaParams) =>
-                    handleAddPizzaToCart(pizzaParams, pizza)
+                    pushPizzaToCart({ ...pizza, ...pizzaParams })
                   }
                 />
               ))}

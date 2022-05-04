@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-
-import { useDispatch } from 'react-redux';
+import { useActions } from '../../../data/hooks';
 import { ECategories, TCategories } from '../../../data/types';
-import { setCategory as setCategoryAction } from '../../../data/redux/catalogSlice';
-
 import { Radiobutton, Radiobuttons } from '../../ui/Radiobuttons';
 import s from './catalogCategories.module.scss';
 
@@ -40,19 +37,19 @@ const catalogCategories: TCategory[] = [
 ];
 
 export default function Categories() {
-  const [category, setCategory] = useState<TCategories>('all');
-  const dispatch = useDispatch();
+  const [category, setLocalCategory] = useState<TCategories>('all');
+  const { setCategory } = useActions();
 
   useEffect(() => {
-    dispatch(setCategoryAction({ category }));
-  }, [category, dispatch]);
+    setCategory({ category });
+  }, [category, setCategory]);
 
   return (
     <nav className={s.categories}>
       <Radiobuttons<TCategories>
         name='categories'
         selected={category}
-        setSelected={setCategory}
+        setSelected={setLocalCategory}
       >
         {catalogCategories.map(({ id, value }: TCategory) => (
           <Radiobutton key={id} value={value} label={ECategories[value]} />

@@ -31,5 +31,5 @@ const catalogSlice = createSlice({
   },
 });
 
-export const { setSortType, setCategory } = catalogSlice.actions;
-export default catalogSlice;
+export const catalogActions = catalogSlice.actions;
+export const catalogReducer = catalogSlice.reducer;

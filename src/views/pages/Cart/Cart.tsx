@@ -1,20 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useTitle } from '../../../data/helpers';
-import {
-  TCartItem,
-  TAddPizzaToCartPayload,
-  TPage,
-  TPizzaIdentification,
-} from '../../../data/types';
-
-import {
-  clearCart,
-  pushPizzaToCart,
-  removePizzaFromCart,
-  subtractPizzaFromCart,
-} from '../../../data/redux/cartSlice';
+import { useSelector } from 'react-redux';
+import { useActions, useTitle } from '../../../data/hooks';
 import { selectCartPizzas, selectTotalValues } from '../../../data/redux/store';
-
+import { TCartItem, TPage } from '../../../data/types';
 import { CartCard } from '../../components';
 import { Button, Cost, Image } from '../../ui';
 import s from './cart.module.scss';
@@ -26,24 +13,12 @@ export default function Cart({ title }: TPage) {
 
   const pizzas = useSelector(selectCartPizzas);
   const { count, price } = useSelector(selectTotalValues);
-
-  const dispatch = useDispatch();
-
-  const handleAddPizza = (pizza: TAddPizzaToCartPayload) => {
-    dispatch(pushPizzaToCart(pizza));
-  };
-
-  const handleSubtractPizza = (pizza: TPizzaIdentification) => {
-    dispatch(subtractPizzaFromCart(pizza));
-  };
-
-  const handleRemovePizza = (pizza: TPizzaIdentification) => {
-    dispatch(removePizzaFromCart(pizza));
-  };
-
-  const handleCartClear = () => {
-    dispatch(clearCart());
-  };
+  const {
+    pushPizzaToCart,
+    subtractPizzaFromCart,
+    removePizzaFromCart,
+    clearCart,
+  } = useActions();
 
   if (!pizzas.length) {
     return (
@@ -70,15 +45,15 @@ export default function Cart({ title }: TPage) {
       <div className={s.cartPage__wrapper}>
         <header className={s.cartPage__header}>
           <h2>Корзина</h2>
-          <Button onClick={handleCartClear}>Очистить корзину</Button>
+          <Button onClick={clearCart}>Очистить корзину</Button>
         </header>
         {pizzas.map((pizza: TCartItem) => (
           <CartCard
             key={`${pizza.id}_${pizza.type}_${pizza.size}`}
             {...pizza}
-            onPizzaAdd={handleAddPizza}
-            onPizzaSubtract={handleSubtractPizza}
-            onPizzaRemove={handleRemovePizza}
+            onPizzaAdd={pushPizzaToCart}
+            onPizzaSubtract={subtractPizzaFromCart}
+            onPizzaRemove={removePizzaFromCart}
           />
         ))}
         <footer className={s.cartPage__footer}>

@@ -1,13 +1,13 @@
 import { configureStore, createSelector } from '@reduxjs/toolkit';
-import catalogSlice from './catalogSlice';
-import cartSlice from './cartSlice';
-import { pizzasApi } from './pizzasApi';
 import { TCartItem } from '../types';
+import { catalogReducer } from './catalogSlice';
+import { cartReducer } from './cartSlice';
+import { pizzasApi } from './pizzasApi';
 
 const store = configureStore({
   reducer: {
-    catalog: catalogSlice.reducer,
-    cart: cartSlice.reducer,
+    catalog: catalogReducer,
+    cart: cartReducer,
     [pizzasApi.reducerPath]: pizzasApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -15,6 +15,7 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+
 export const selectFilters = (state: RootState) => state.catalog;
 export const selectCartPizzas = (state: RootState) => state.cart.pizzas;
 export const selectTotalValues = createSelector(
