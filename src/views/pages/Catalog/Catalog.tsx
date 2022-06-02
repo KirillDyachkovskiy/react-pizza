@@ -1,13 +1,15 @@
 import { useGetPizzasQuery } from '../../../data/redux/pizzasApi';
+import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
 import { useActions, useAppSelector, useTitle } from '../../../data/hooks';
 import { selectFilters } from '../../../data/redux/store';
-import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
+
 import {
   CatalogCard,
   CatalogCardPreloader,
   CatalogSorter,
   CatalogCategories,
 } from '../../components';
+
 import s from './catalog.module.scss';
 
 export default function Catalog({ title }: TPage) {
