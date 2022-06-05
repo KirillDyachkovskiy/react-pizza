@@ -56,11 +56,13 @@ export enum ECategories {
 export type TCategories = keyof typeof ECategories;
 
 export enum ESortType {
-  rating = 'по популярности',
-  price = 'по цене',
-  name = 'по алфавиту',
+  rating = 'популярности',
+  price = 'цене',
+  name = 'алфавиту',
 }
 
 export type TSortType = keyof typeof ESortType;
+
+export const sortTypes = Object.keys(ESortType) as TSortType[];
 
 export type TIcon = 'pizza' | 'cross' | 'minus' | 'plus' | 'trash';

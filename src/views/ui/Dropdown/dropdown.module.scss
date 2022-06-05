@@ -1,0 +1,11 @@
+.dropdown {
+  position: relative;
+
+  &__element {
+    cursor: pointer;
+    display: inline-flex;
+    gap: 9px;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
