@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useActions } from '../../../data/hooks';
-import { ECategories, TCategories } from '../../../data/types';
+import {
+  ECategory,
+  TCatalogCategoriesItem,
+  TCategory,
+} from '../../../data/types';
+
 import { Radiobutton, Radiobuttons } from '../../ui/Radiobuttons';
+
 import s from './catalogCategories.module.scss';
 
-type TCategory = {
-  id: number;
-  value: TCategories;
-};
-
-const catalogCategories: TCategory[] = [
+const catalogCategories: TCatalogCategoriesItem[] = [
   {
     id: 0,
     value: 'all',
@@ -36,25 +35,27 @@ const catalogCategories: TCategory[] = [
   },
 ];
 
-export default function Categories() {
-  const [category, setLocalCategory] = useState<TCategories>('all');
-  const { setCategory } = useActions();
+interface ICategories {
+  value: TCategory;
+  onChange: (category: TCategory) => void;
+}
 
-  useEffect(() => {
-    setCategory({ category });
-  }, [category, setCategory]);
-
+function Categories({ value, onChange }: ICategories) {
   return (
     <nav className={s.categories}>
-      <Radiobuttons<TCategories>
+      <Radiobuttons<TCategory>
         name='categories'
-        selected={category}
-        setSelected={setLocalCategory}
+        selected={value}
+        setSelected={onChange}
       >
-        {catalogCategories.map(({ id, value }: TCategory) => (
-          <Radiobutton key={id} value={value} label={ECategories[value]} />
-        ))}
+        {catalogCategories.map(
+          ({ id, value: item }: TCatalogCategoriesItem) => (
+            <Radiobutton key={id} value={item} label={ECategory[item]} />
+          )
+        )}
       </Radiobuttons>
     </nav>
   );
 }
+
+export default Categories;

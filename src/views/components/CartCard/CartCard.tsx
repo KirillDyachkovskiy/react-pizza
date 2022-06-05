@@ -1,40 +1,27 @@
 import {
   EPizzaType,
   TAddPizzaToCartPayload,
+  TCartItem,
   TPizzaIdentification,
-  TPizzaSize,
-  TPizzaType,
 } from '../../../data/types';
 import { Button, Cost, Icon, Image } from '../../ui';
 import s from './cartCard.module.scss';
 
 interface IButton {
-  id: number;
-  name: string;
-  totalPrice: number;
-  imageUrl: string;
-  type: TPizzaType;
-  size: TPizzaSize;
-  price: number;
-  count: number;
+  pizza: TCartItem;
   onPizzaAdd: (pizza: TAddPizzaToCartPayload) => void;
   onPizzaSubtract: (pizza: TPizzaIdentification) => void;
   onPizzaRemove: (pizza: TPizzaIdentification) => void;
 }
 
-export default function CartCard({
-  id,
-  name,
-  totalPrice,
-  imageUrl,
-  type,
-  size,
-  price,
-  count,
+function CartCard({
+  pizza,
   onPizzaAdd,
   onPizzaSubtract,
   onPizzaRemove,
 }: IButton) {
+  const { id, size, type, count, price, name, imageUrl, totalPrice } = pizza;
+
   return (
     <div className={s.cartCard}>
       <div className={s.cartCard__info}>
@@ -94,3 +81,5 @@ export default function CartCard({
     </div>
   );
 }
+
+export default CartCard;

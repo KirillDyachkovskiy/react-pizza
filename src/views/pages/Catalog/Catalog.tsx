@@ -1,35 +1,56 @@
+import { useSearchParams } from 'react-router-dom';
 import { useGetPizzasQuery } from '../../../data/redux/pizzasApi';
-import { ECategories, TPizzaParams, TPage, TPizza } from '../../../data/types';
-import { useActions, useAppSelector, useTitle } from '../../../data/hooks';
-import { selectFilters } from '../../../data/redux/store';
+import {
+  ECategory,
+  TCategory,
+  TPage,
+  TPizza,
+  TPizzaParams,
+  TSortType,
+} from '../../../data/types';
+import { useActions, useTitle } from '../../../data/hooks';
 
 import {
   CatalogCard,
   CatalogCardPreloader,
-  CatalogSorter,
   CatalogCategories,
+  CatalogSorter,
 } from '../../components';
 
 import s from './catalog.module.scss';
 
-export default function Catalog({ title }: TPage) {
+function Catalog({ title }: TPage) {
   useTitle(title);
 
-  const filters = useAppSelector(selectFilters);
-  const { pushPizzaToCart } = useActions();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { data: pizzas, isFetching } = useGetPizzasQuery(filters);
+  const sortType = (searchParams.get('sortType') || 'rating') as TSortType;
+  const category = (searchParams.get('category') || 'all') as TCategory;
+
+  const changeSortType = (newSortType: TSortType) =>
+    setSearchParams({ sortType: newSortType, category });
+  const changeCategory = (newCategory: TCategory) =>
+    setSearchParams({ sortType, category: newCategory });
+
+  const { data: pizzas, isFetching } = useGetPizzasQuery({
+    category,
+    sortType,
+  });
+
+  const { pushPizzaToCart } = useActions();
 
   return (
     <section className={s.catalogPage}>
       <header className={s.catalogPage__header}>
-        <CatalogCategories />
-        <CatalogSorter name='pizzasSorter' sortType={filters.sortType} />
+        <CatalogCategories value={category} onChange={changeCategory} />
+        <CatalogSorter
+          name='pizzasSorter'
+          value={sortType}
+          onChange={changeSortType}
+        />
       </header>
       <main className={s.catalogPage__main}>
-        <h2 className={s.catalogPage__title}>
-          {ECategories[filters.category]} пиццы
-        </h2>
+        <h2 className={s.catalogPage__title}>{ECategory[category]} пиццы</h2>
         <div className={s.catalogPage__catalog}>
           {isFetching
             ? Array.from(Array(4).keys()).map((num: number) => (
@@ -49,3 +70,5 @@ export default function Catalog({ title }: TPage) {
     </section>
   );
 }
+
+export default Catalog;

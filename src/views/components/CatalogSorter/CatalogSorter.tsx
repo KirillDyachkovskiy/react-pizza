@@ -1,4 +1,3 @@
-import { useActions } from '../../../data/hooks';
 import { ESortType, sortTypes, TSortType } from '../../../data/types';
 
 import { Dropdown } from '../../ui';
@@ -8,15 +7,14 @@ import s from './catalogSorter.module.scss';
 
 interface ICatalogSorter {
   name: string;
-  sortType: TSortType;
+  value: TSortType;
+  onChange: (category: TSortType) => void;
 }
 
-function CatalogSorter({ name, sortType }: ICatalogSorter) {
-  const { setSortType } = useActions();
-
+function CatalogSorter({ name, value, onChange }: ICatalogSorter) {
   const handleTypeChange =
     (newSortType: TSortType, hideDropdown: () => void) => () => {
-      setSortType({ sortType: newSortType });
+      onChange(newSortType);
       hideDropdown();
     };
 
@@ -25,18 +23,18 @@ function CatalogSorter({ name, sortType }: ICatalogSorter) {
       <span>Сортировка по:</span>
       <Dropdown
         element={
-          <span className={s.catalogSorter__span}>{ESortType[sortType]}</span>
+          <span className={s.catalogSorter__span}>{ESortType[value]}</span>
         }
       >
         {(hideDropdown) => (
           <div className={s.catalogSorter__dropdown}>
-            {sortTypes.map((value: TSortType) => (
+            {sortTypes.map((sortType: TSortType) => (
               <CatalogSorterItem
-                key={value}
+                key={sortType}
                 name={name}
-                value={value}
-                checked={sortType === value}
-                onChange={handleTypeChange(value, hideDropdown)}
+                value={sortType}
+                checked={value === sortType}
+                onChange={handleTypeChange(sortType, hideDropdown)}
               />
             ))}
           </div>

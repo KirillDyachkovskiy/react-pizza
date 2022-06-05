@@ -18,7 +18,7 @@ export type TPizza = {
   types: TPizzaType[];
   sizes: TPizzaSize[];
   price: number;
-  category: TCategories;
+  category: TCategory;
   rating: number;
 };
 
@@ -44,7 +44,7 @@ export type TPizzaIdentification = {
   size: TPizzaSize;
 };
 
-export enum ECategories {
+export enum ECategory {
   all = 'Все',
   meat = 'Мясные',
   vegetarian = 'Вегетарианские',
@@ -53,7 +53,12 @@ export enum ECategories {
   closed = 'Закрытые',
 }
 
-export type TCategories = keyof typeof ECategories;
+export type TCategory = keyof typeof ECategory;
+
+export type TCatalogCategoriesItem = {
+  id: number;
+  value: TCategory;
+};
 
 export enum ESortType {
   rating = 'популярности',

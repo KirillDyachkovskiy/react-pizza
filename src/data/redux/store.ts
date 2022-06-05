@@ -1,12 +1,10 @@
 import { configureStore, createSelector } from '@reduxjs/toolkit';
 import { TCartItem } from '../types';
-import { catalogReducer } from './catalogSlice';
 import { cartReducer } from './cartSlice';
 import { pizzasApi } from './pizzasApi';
 
 const store = configureStore({
   reducer: {
-    catalog: catalogReducer,
     cart: cartReducer,
     [pizzasApi.reducerPath]: pizzasApi.reducer,
   },
@@ -16,7 +14,6 @@ const store = configureStore({
 
 export type TRootState = ReturnType<typeof store.getState>;
 
-export const selectFilters = (state: TRootState) => state.catalog;
 export const selectCartPizzas = (state: TRootState) => state.cart.pizzas;
 export const selectTotalValues = createSelector(
   [selectCartPizzas],

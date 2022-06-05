@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TCategories, TPizza, TSortType } from '../types';
+import { TCategory, TPizza, TSortType } from '../types';
 
 export const pizzasApi = createApi({
   reducerPath: 'pizzasApi',
@@ -7,7 +7,7 @@ export const pizzasApi = createApi({
   endpoints: (builder) => ({
     getPizzas: builder.query<
       TPizza[],
-      { sortType: TSortType; category: TCategories }
+      { sortType: TSortType; category: TCategory }
     >({
       query: ({ sortType, category }) => ({
         url: 'pizzas',

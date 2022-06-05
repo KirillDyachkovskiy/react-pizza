@@ -19,6 +19,8 @@ export default function Cart({ title }: TPage) {
     clearCart,
   } = useActions();
 
+  const onCartClear = () => clearCart();
+
   if (!pizzas.length) {
     return (
       <section className={s.cartPage}>
@@ -44,12 +46,12 @@ export default function Cart({ title }: TPage) {
       <div className={s.cartPage__wrapper}>
         <header className={s.cartPage__header}>
           <h2>Корзина</h2>
-          <Button onClick={clearCart}>Очистить корзину</Button>
+          <Button onClick={onCartClear}>Очистить корзину</Button>
         </header>
         {pizzas.map((pizza: TCartItem) => (
           <CartCard
             key={`${pizza.id}_${pizza.type}_${pizza.size}`}
-            {...pizza}
+            pizza={pizza}
             onPizzaAdd={pushPizzaToCart}
             onPizzaSubtract={subtractPizzaFromCart}
             onPizzaRemove={removePizzaFromCart}
